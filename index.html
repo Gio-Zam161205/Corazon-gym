@@ -199,6 +199,145 @@
         setInterval(createParticle, 150);
     </script>
 </body>
+</html>            height: 220px;
+            overflow: visible;
+            margin-bottom: 20px;
+        }
+
+        /* Animación inicial de dibujado */
+        .heart-path {
+            fill: transparent;
+            stroke: #ff2a5f;
+            stroke-width: 3;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 10px #ff2a5f);
+            animation: drawHeart 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards, 
+                       realHeartbeat 1.2s infinite 3s;
+        }
+
+        @keyframes drawHeart {
+            0% { stroke-dashoffset: 300; }
+            100% { stroke-dashoffset: 0; fill: rgba(255, 42, 95, 0.1); }
+        }
+
+        /* Animación doble latido (Lub-Dub) */
+        @keyframes realHeartbeat {
+            0% { transform: scale(1); fill: rgba(255, 42, 95, 0.2); filter: drop-shadow(0 0 10px #ff2a5f); stroke-width: 2;}
+            15% { transform: scale(1.15); fill: #ff2a5f; filter: drop-shadow(0 0 35px #ff2a5f); stroke-width: 0;}
+            30% { transform: scale(1); fill: rgba(255, 42, 95, 0.8); filter: drop-shadow(0 0 15px #ff2a5f); stroke-width: 0;}
+            45% { transform: scale(1.25); fill: #ff2a5f; filter: drop-shadow(0 0 45px #ff2a5f); stroke-width: 0;}
+            100% { transform: scale(1); fill: rgba(255, 42, 95, 0.2); filter: drop-shadow(0 0 10px #ff2a5f); stroke-width: 2;}
+        }
+
+        .message-box {
+            opacity: 0;
+            animation: slideUpFade 2s ease forwards 3.2s;
+        }
+
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .emojis {
+            display: block;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: bounceEmojis 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes bounceEmojis {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: 1px;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+        }
+
+        .pink-text {
+            color: #ff2a5f;
+            text-shadow: 0 0 15px rgba(255, 42, 95, 0.5);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin: 8px 0;
+            font-weight: 400;
+            padding: 0 10px;
+        }
+
+        .highlight {
+            color: #fff;
+            font-weight: 700;
+            font-style: italic;
+            background: linear-gradient(90deg, #ff2a5f, #ff7b93);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fondo de chispas/energía -->
+    <div id="particles"></div>
+
+    <div class="container">
+        <!-- Corazón SVG -->
+        <svg viewBox="0 0 100 100">
+            <path class="heart-path" 
+                  d="M 50,85 C 50,85 15,55 15,30 C 15,15 30,10 40,20 C 50,30 50,30 50,30 C 50,30 50,30 60,20 C 70,10 85,15 85,30 C 85,55 50,85 50,85 Z" />
+        </svg>
+
+        <div class="message-box">
+            <h1>
+                <span class="emojis">🏋🏻‍♀️ 🤍 🏋🏻‍♀️</span>
+                PARA LA MÁS<br><span class="pink-text">HERMOSA</span>
+            </h1>
+            <p>Haces que mi corazón lata más rápido que el <span class="highlight">pre-entreno</span>.</p>
+            <p>Mi mejor <span class="highlight">PR</span> fue haberte conocido.</p>
+        </div>
+    </div>
+
+    <!-- Script para generar las partículas mágicas de fondo -->
+    <script>
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Posición aleatoria horizontal
+            particle.style.left = Math.random() * 100 + 'vw';
+            
+            // Duración de animación aleatoria (entre 3 y 6 segundos)
+            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            
+            // Tamaño aleatorio
+            const size = Math.random() * 4 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+
+            document.getElementById('particles').appendChild(particle);
+
+            // Eliminar la partícula cuando termine su animación para no saturar la memoria
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        // Crear una partícula nueva cada 150 milisegundos
+        setInterval(createParticle, 150);
+    </script>
+</body>
 </html>            fill: transparent;
             stroke: #ff2a5f;
             stroke-width: 4;
